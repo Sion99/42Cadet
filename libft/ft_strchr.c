@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:21:26 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:08:36 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:27:38 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	*temp;
 
 	i = 0;
-	while (s[i])
+	temp = (char *)s;
+	while (temp[i])
 	{
-		if (s[i] == c)
-			return (&s[i]);
+		if (temp[i] == c)
+			return (&temp[i]);
 		i++;
 	}
 	return (0);

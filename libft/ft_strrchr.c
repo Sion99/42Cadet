@@ -6,31 +6,31 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:23:05 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:10:39 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 18:41:14 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strlen(const char *s)
-{
-	int	i;
+// static size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (s[i])
+// 		i++;
+// 	return (i);
+// }
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = ft_strlen(s);
 	while (--i)
 	{
 		if (s[i] == c)
-			return (&s[i]);
+			return ((char *)&s[i]);
 	}
 	return (0);
 }

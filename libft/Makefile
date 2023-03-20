@@ -1,16 +1,16 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-SRCS=*.c
+SRCS=$(wildcard *.c)
 NAME=libft.a
-OBJS=*.o
+OBJS=$(SRCS:.c=.o)
+
+.c.o: $(SRCS)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	ar -rc $(NAME) $(OBJS)
-
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean :
 	rm -f $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:37:12 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:08:00 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:26:06 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*t2;
 
 	count = 0;
-	t1 = s1;
-	t2 = s2;
+	t1 = (unsigned char *)s1;
+	t2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
 	while (*(t1 + count) && *(t2 + count) && (count < n))

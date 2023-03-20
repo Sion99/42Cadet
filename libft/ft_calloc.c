@@ -6,26 +6,26 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:18:25 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:06:05 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 18:39:53 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*ft_memset(void *s, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*temp;
+// static void	*ft_memset(void *s, int c, size_t len)
+// {
+// 	size_t			i;
+// 	unsigned char	*temp;
 
-	i = 0;
-	temp = s;
-	while (i < len)
-	{
-		*(temp + i) = c;
-		i++;
-	}
-	return (s);
-}
+// 	i = 0;
+// 	temp = s;
+// 	while (i < len)
+// 	{
+// 		*(temp + i) = c;
+// 		i++;
+// 	}
+// 	return (s);
+// }
 
 void	*ft_calloc(size_t count, size_t size)
 {
