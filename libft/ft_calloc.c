@@ -12,18 +12,27 @@
 
 #include "libft.h"
 
-void *ft_calloc(size_t count, size_t size)
+static void *ft_memset(void *s, int c, size_t len)
 {
 	size_t i;
-	void *arr;
+	unsigned char *temp;
 
 	i = 0;
-	arr = malloc(size * count);
-	while (i < size)
+	temp = s;
+	while (i < len)
 	{
-		arr[i] = 0;
+		*(temp + i) = c;
 		i++;
 	}
+	return (s);
+}
+
+void *ft_calloc(size_t count, size_t size)
+{
+	void *arr;
+
+	arr = malloc(size * count);
+	ft_memset(arr, 0, count * size);
 	return (arr);
 }
 
@@ -42,9 +51,7 @@ int main()
 	if ((index = array = (long *)ft_calloc(num, sizeof(long))) != NULL)
 	{
 		for (i = 0; i < num; ++i)
-			*index++ = i;
-		for (i = 0; i < num; ++i)
-			printf("array[%i] = %i\n", i, array[i]);
+			printf("array[%i] = %li\n", i, array[i]);
 	}
 	else
 	{

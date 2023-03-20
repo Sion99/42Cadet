@@ -30,7 +30,7 @@ size_t strlcat(char *dst, const char *src, size_t dstsize)
 
 	count = 0;
 	count2 = 0;
-	destlen = ft_strlen(dest);
+	destlen = ft_strlen(dst);
 	while (dst[count])
 		count++;
 	while (src[count2] && (count < dstsize - 1))

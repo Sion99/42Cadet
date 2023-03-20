@@ -35,23 +35,3 @@ void *ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-
-#include <stdio.h>
-
-int main()
-{
-	char src[4] = "aaa";
-	char dest1[6] = "bbbbb";
-	char dest2[6] = "bbbbb";
-
-	ft_memmove(dest, src, sizeof(src));
-
-	for (int i = 0; i < 2; ++i)
-	{
-		for (int j = 0; j < 3; ++j)
-		{
-			printf("%d ", dest[i][j]);
-		}
-		printf("\n");
-	}
-}
