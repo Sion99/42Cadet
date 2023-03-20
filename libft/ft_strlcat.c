@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:55:23 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/16 13:06:08 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:09:41 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t ft_strlen(char *s)
+static size_t	ft_strlen(char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -22,11 +22,11 @@ static size_t ft_strlen(char *s)
 	return (i);
 }
 
-size_t strlcat(char *dst, const char *src, size_t dstsize)
+size_t	strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t count;
-	size_t count2;
-	size_t destlen;
+	size_t	count;
+	size_t	count2;
+	size_t	destlen;
 
 	count = 0;
 	count2 = 0;

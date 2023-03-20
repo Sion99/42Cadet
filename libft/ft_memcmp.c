@@ -3,29 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:37:12 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/16 14:06:29 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:08:00 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t count;
+	size_t			count;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
 	count = 0;
+	t1 = s1;
+	t2 = s2;
 	if (n == 0)
 		return (0);
-	while (s1[count] && s2[count] && (count < n))
+	while (*(t1 + count) && *(t2 + count) && (count < n))
 	{
-		if ((unsigned char)s1[count] != (unsigned char)s2[count])
-			break;
+		if (*(t1 + count) != *(t2 + count))
+			break ;
 		if (count == n - 1)
-			break;
+			break ;
 		count++;
 	}
-	return ((unsigned char)s1[count] - (unsigned char)s2[count]);
+	return (*(t1 + count) - *(t2 + count));
 }
