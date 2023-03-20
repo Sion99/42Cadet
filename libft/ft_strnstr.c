@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static size_t	ft_strlen(const char *s)
+#include "libft.h"
+
+static size_t ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	while (s[i])
@@ -20,10 +22,10 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+char *strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t i;
+	size_t j;
 
 	i = 0;
 	if (ft_strlen(needle) == 0)

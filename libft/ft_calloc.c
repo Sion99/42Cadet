@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void *ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
-	void	*arr;
+	size_t i;
+	void *arr;
 
 	i = 0;
 	arr = malloc(size * count);
@@ -31,10 +31,10 @@ void	*ft_calloc(size_t count, size_t size)
 
 int main()
 {
-	long	*array;
-	long	*index;
-	int		i;
-	int		num;
+	long *array;
+	long *index;
+	int i;
+	int num;
 
 	printf("Enter the size of the array\n");
 	scanf("%i", &num);

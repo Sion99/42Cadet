@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static size_t	ft_strlen(const char *s)
+#include "libft.h"
+
+static size_t ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	while (s[i])
@@ -20,9 +22,9 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
+	size_t i;
 
 	if (size == 0)
 		return (ft_strlen(src));
