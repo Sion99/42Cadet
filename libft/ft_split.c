@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:56:12 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/27 21:29:23 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 21:50:23 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ char	**ft_split(char const *str, char c)
 	if (!splitted)
 		return (NULL);
 	splitted = ft_allocate(splitted, str, c, s_num);
+	if (!splitted)
+		return (NULL);
 	splitted[s_num] = NULL;
 	return (splitted);
 }

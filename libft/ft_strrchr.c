@@ -6,45 +6,27 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:23:05 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/27 18:48:03 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 22:14:11 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int		i;
 	char	*temp;
 
-	i = ft_strlen(s);
+	i = 0;
 	temp = (char *)s;
-	if (temp[i] == (char)c)
-		return ((char *)&temp[i]);
-	while (temp[--i])
-	{
-		if (temp[i] == (char)c)
-			return ((char *)&temp[i]);
-	}
-	return (0);
-}
-/*
-char	*ft_strrchr(const char *s, int c)
-{
-	size_t	i;
-	char	*temp;
-
-	i = ft_strlen(s);
-	temp = (char *)s;
-	if (temp[i] == (char)c)
-		return ((char *)&temp[i]);
+	while (s[i])
+		i++;
+	if ((char)c == '\0')
+		return (temp + i);
 	i--;
 	while (i >= 0)
 	{
-		if (temp[i] == (char)c)
-			return ((char *)&temp[i]);
+		if (s[i] == (char)c)
+			return (temp + i);
 		i--;
 	}
 	return (0);
 }
-*/
