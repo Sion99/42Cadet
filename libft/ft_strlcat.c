@@ -6,21 +6,11 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:55:23 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 18:40:14 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:07:57 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// static size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
@@ -31,6 +21,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	count = 0;
 	count2 = 0;
 	destlen = ft_strlen(dst);
+	if (dstsize < destlen)
+		return (dstsize + ft_strlen(src));
 	while (dst[count])
 		count++;
 	while (src[count2] && (count < dstsize - 1))
@@ -39,8 +31,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		count++;
 		count2++;
 	}
-	if (dstsize < destlen)
-		return (dstsize + ft_strlen(src));
 	dst[count] = 0;
 	return (destlen + ft_strlen(src));
 }

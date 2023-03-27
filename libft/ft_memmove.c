@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:33:34 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 18:27:24 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:03:09 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char		*temp;
-	const char	*s;
+	unsigned char		*temp;
+	const char			*s;
 
+	if (dst == 0 && src == 0)
+		return (0);
 	if (dst <= src)
 	{
 		temp = dst;

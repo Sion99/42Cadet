@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:01:07 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 16:59:29 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:10:17 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i])
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + str[i] - 48;
 		i++;

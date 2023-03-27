@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:25:44 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:25:48 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:30:49 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	i = 0;
 	temp = (unsigned char *)s;
-	while (*(temp + i) && (i < n))
+	while (i < n)
 	{
-		if (*(temp + i) == (unsigned char)c)
-			return (temp + i);
+		if (temp[i] == (unsigned char)c)
+			return ((unsigned char *)(&temp[i]));
 		i++;
 	}
 	return (0);
