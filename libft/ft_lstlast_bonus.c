@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 12:15:38 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/29 20:27:10 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/29 22:16:39 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/29 22:46:43 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	*cpy;
-	size_t	i;
+	t_list	*cur;
 
-	cpy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!cpy)
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	cur = lst;
+	while (cur)
 	{
-		cpy[i] = s1[i];
-		i++;
+		if (cur -> next == NULL)
+			break ;
+		cur = cur -> next;
 	}
-	cpy[i] = 0;
-	return (cpy);
+	return (cur);
 }

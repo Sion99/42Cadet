@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 12:15:38 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/29 20:27:10 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/29 21:28:46 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/29 21:29:37 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*cpy;
-	size_t	i;
-
-	cpy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!cpy)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		cpy[i] = s1[i];
-		i++;
-	}
-	cpy[i] = 0;
-	return (cpy);
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }

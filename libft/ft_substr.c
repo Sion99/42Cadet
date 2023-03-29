@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:12:26 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/28 23:08:29 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/29 20:22:18 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!sub)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < len && start < size)
 		sub[i++] = s[start++];
 	sub[i] = 0;
 	return (sub);

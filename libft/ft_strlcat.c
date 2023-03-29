@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:55:23 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/27 12:07:57 by sishin           ###   ########.fr       */
+/*   Updated: 2023/03/29 22:25:40 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	count = 0;
 	count2 = 0;
 	destlen = ft_strlen(dst);
-	if (dstsize < destlen)
+	if (dstsize <= destlen)
 		return (dstsize + ft_strlen(src));
 	while (dst[count])
 		count++;
