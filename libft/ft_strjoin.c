@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:20:29 by sishin            #+#    #+#             */
-/*   Updated: 2023/03/27 20:31:12 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/28 16:41:59 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/28 16:52:22 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int	ft_tolower(int c)
+/*
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	char	*joined;
+	size_t	len1;
+	size_t	len2;
+
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
 }
+*/
