@@ -6,43 +6,52 @@
 #    By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 15:11:05 by sishin            #+#    #+#              #
-#    Updated: 2023/03/30 15:39:00 by sishin           ###   ########.fr        #
+#    Updated: 2023/03/30 22:40:44 by sishin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=cc
+SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c\
+			ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c\
+			ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c\
+			ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c\
+			ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c\
+			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-CFLAGS=-Wall -Wextra -Werror
+SRCS_BO	=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
+			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
-SRCS=ft_itoa.c ft_split.c ft_strtrim.c ft_calloc.c ft_strdup.c ft_memcpy.c ft_memcmp.c \
-	 ft_memchr.c ft_memmove.c ft_bzero.c ft_memset.c ft_strjoin.c ft_strnstr.c ft_isascii.c \
-	 ft_strchr.c ft_strncmp.c ft_toupper.c ft_atoi.c ft_isdigit.c ft_strlcat.c ft_isalnum.c \
-	 ft_isprint.c ft_strlcpy.c ft_strrchr.c ft_isalpha.c ft_strlen.c ft_tolower.c ft_substr.c \
-	 ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-	 ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
-	 ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-	 ft_lstmap_bonus.c
+OBJS	=	${SRCS:.c=.o}
 
-NAME=libft.a
+OBJS_BO	=	${OBJS} ${SRCS_BO:.c=.o}
 
-OBJS=$(SRCS:.c=.o)
+CC		=	cc
 
-OBJS_BONUS=$(SRCS_BONUS:.c=.o)
+CFLAGS	=	-Wall -Wextra -Werror
 
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+NAME	=	libft.a
 
-all : $(NAME)
+all		:	${NAME}
 
-$(NAME) : $(OBJS)
-	ar -rc $(NAME) $(OBJS)
+%.o		:	%.c
+			${CC} ${CFLAGS} -c $< -o $@
 
-clean :
-	rm -f $(OBJS)
+${NAME} :	${OBJS}
+			rm -f all bonus ${NAME}
+			ar -rc ${NAME} ${OBJS}
+			touch all
 
-fclean : clean
-	rm -f $(NAME)
+bonus	:	${OBJS_BO}
+			rm -f all bonus ${NAME}
+			ar -rc ${NAME} ${OBJS_BO}
+			touch bonus
 
-re : fclean all
+clean	:
+			rm -f ${OBJS_BO} all bonus
 
-.PHONY : clean fclean re
+fclean	:	clean
+			rm -f ${NAME}
+
+re		:	fclean all
+
+.PHONY	:	all clean fclean re .c.o
