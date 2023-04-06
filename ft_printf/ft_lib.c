@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lib.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:04:59 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/03 18:00:34 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:19:37 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ int	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
-	if (!s[0])
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+	if (!s)
+		return (write(1, "(null)", 6));
+	if (!*s)
+		return (write(1, "", 0));
 	while (s[i])
 	{
-		if(ft_putchar(s[i]) == -1)
+		if (ft_putchar(s[i]) == -1)
 			return (-1);
-		else
-			i++;
+		i++;
 	}
 	return (i);
 }
@@ -65,7 +63,7 @@ int	check_sign(int *n, int *check)
 
 int	ft_putnbr(int n)
 {
-	char	str[11];
+	char	str[10];
 	int		count;
 	int		check;
 	int		i;
@@ -83,10 +81,36 @@ int	ft_putnbr(int n)
 		count--;
 		while (count >= 0)
 		{
-			if(ft_putchar(str[count--]) == -1)
-				return (i);
+			if (ft_putchar(str[count--]) == -1)
+				return (-1);
 			i++;
 		}
+	}
+	return (i);
+}
+
+int	ft_putunsigned(unsigned int n)
+{
+	char	str[10];
+	int		count;
+	int		i;
+
+	i = 0;
+	count = 0;
+	if (n == 0)
+		return (ft_putchar('0'));
+	while (n != 0)
+	{
+		str[count] = n % 10 + 48;
+		count++;
+		n /= 10;
+	}
+	count--;
+	while (count >= 0)
+	{
+		if (ft_putchar(str[count--]) == -1)
+			return (-1);
+		i++;
 	}
 	return (i);
 }
