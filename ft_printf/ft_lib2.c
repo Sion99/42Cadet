@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:26:30 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/06 17:20:24 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:29:35 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,53 +18,6 @@ char	ft_toupper(char c)
 		return (c - 32);
 	return (c);
 }
-/*
-int	check_sign2(int n, long long *num)
-{
-	if (n < 0)
-	{
-		*num = (long long)-n;
-		return (write(1, "-", 1));
-	}
-	else if (n == 0)
-	{
-		*num = 0;
-		return (write(1, "0", 1));
-	}
-	else
-		*num = (long long)n;
-	return (0);
-}
-*/
-/*
-int	ft_puthex(int flag, int n)
-{
-	int			i;
-	int			count;
-	long long	num;
-	char		str[11];
-	char		*x;
-
-	x = "0123456789abcdef";
-	i = check_sign2(n, &num);
-	count = 0;
-	while (num != 0)
-	{
-		str[count++] = x[num % 16];
-		if (flag == 1)
-			str[count - 1] = ft_toupper(str[count - 1]);
-		num /= 16;
-	}
-	count--;
-	while (count >= 0)
-	{
-		if (ft_putchar(str[count--]) == -1)
-			return (i);
-		i++;
-	}
-	return (i);
-}
-*/
 
 int	ft_putunsignedhex(int flag, unsigned int n)
 {

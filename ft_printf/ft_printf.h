@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:41:30 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/06 17:07:40 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/06 20:41:14 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int			check_sign(int *n, int *check);
 int			ft_putnbr(int n);
 int			ft_putunsigned(unsigned int n);
 char		ft_toupper(char c);
-// int			check_sign2(int n, long long *num);
-//int			ft_puthex(int flag, int n);
 int			ft_putunsignedhex(int flag, unsigned int n);
 int			ft_putaddr(unsigned long addr);
 
