@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 13:52:31 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/17 22:19:15 by sishin           ###   ########.fr       */
+/*   Created: 2023/04/20 14:33:46 by sishin            #+#    #+#             */
+/*   Updated: 2023/04/20 16:31:18 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// checks if there is '\n', returns the index of '\n', -1 if found nothing.
+// 개행이 있는지 판별
 int	has_newline(const char *str)
 {
 	int	i;
@@ -27,42 +27,25 @@ int	has_newline(const char *str)
 	return (-1);
 }
 
-// returns the string before '\n'.
-/*char	*get_head(char **res)
+// 개행까지 문자열을 떼어 res에 넣고, 나머지는 앞으로 당겨옴.
+char	*get_head(char **backup)
 {
-	int		i;
-	int		j;
-	char	*head;
+	char			*res;
+	int				end;
 
-	i = has_newline(*res);
-	head = malloc(sizeof(char) * (i + 1));
-	j = 0;
-	while (j < i)
+	end = has_newline(*backup);
+	if (end == -1)
 	{
-		head[j] = *res[j];
-		j++;
-	}
-	head[j] = '\0';
-	return (head);
-}
-*/
-
-char	*get_head(char **backup, char buf[])
-{
-	char	*res;
-
-	if (has_newline(buf) < 0)
-	{
-		res = gnl_strndup(buf, gnl_strlen(buf));
+		res = gnl_strndup(*backup, gnl_strlen(*backup));
+		free_backup(backup);
 	}
 	else
 	{
-		res = gnl_strndup(buf, has_newline(buf));
+		res = gnl_substr(*backup, 0, end);
+		*backup = gnl_substr(*backup, end + 1, gnl_strlen(*backup));
 	}
 	return (res);
 }
-
-ssize_t	read_file(int fd, char **backup);
 
 char	*get_next_line(int fd)
 {
@@ -70,20 +53,22 @@ char	*get_next_line(int fd)
 	char		buf[BUFFER_SIZE + 1];
 	char		*res;
 	ssize_t		len;
-	int			i;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	len = 1;
-	while (len)
+	while (1)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		if (len < 0)
-			return (free_backup(backup));
+			return (free_backup(&backup));
 		if (!len)
 			break ;
-		buf[BUFFER_SIZE] = 0;
-		res = get_head(&backup, buf);
+		buf[len] = 0;
+		backup = gnl_strcat(backup, buf);
+		if (has_newline(backup) != -1)
+			res = get_head(&backup);
 	}
+	if (!len)
+		return (get_head(&backup));
 	return (res);
 }

@@ -6,25 +6,36 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:52:38 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/17 21:16:47 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/20 15:54:47 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*gnl_strcat(char *dest, char *src, ssize_t size)
+char	*gnl_strcat(char *backup, char *buf)
 {
-	int				count;
-	unsigned int	count_2;
+	unsigned int	len;
+	char			*cat;
+	int				i;
+	int				j;
 
-	count = 0;
-	count_2 = 0;
-	while (dest[count])
-		count++;
-	while (src[count_2] && count_2 < size)
-		dest[count++] = src[count_2++];
-	dest[count] = '\0';
-	return (dest);
+	if (!backup)
+		return (gnl_strndup(buf, gnl_strlen(buf)));
+	i = 0;
+	j = 0;
+	len = gnl_strlen(backup) + gnl_strlen(buf);
+	cat = (char *)malloc(sizeof(char) * len + 1);
+	if (!cat)
+		return (NULL);
+	while (backup[i])
+	{
+		cat[i] = backup[i];
+		i++;
+	}
+	while (buf[j])
+		cat[i++] = buf[j++];
+	cat[i] = 0;
+	return (cat);
 }
 
 unsigned int	gnl_strlen(char *str)
@@ -55,14 +66,12 @@ char	*gnl_strndup(char *s1, unsigned int n)
 	return (cpy);
 }
 
-char	*gnl_substr(char *s, unsigned int start)
+char	*gnl_substr(char *s, unsigned int start, unsigned int end)
 {
-	char		*sub;
-	size_t		i;
-	size_t		size;
+	char			*sub;
+	unsigned int	i;
 
-	size = gnl_strlen(s);
-	if (size <= start)
+	if (end <= start)
 	{
 		sub = malloc(sizeof(char) * 1);
 		if (!sub)
@@ -70,14 +79,11 @@ char	*gnl_substr(char *s, unsigned int start)
 		sub[0] = 0;
 		return (sub);
 	}
-	if (size - start < has_newline(s))
-		sub = malloc(sizeof(char) * (size - start + 1));
-	else
-		sub = malloc(sizeof(char) * (has_newline(s) + 1));
+	sub = malloc(sizeof(char) * (end - start + 1));
 	if (!sub)
 		return (NULL);
 	i = 0;
-	while (i < has_newline(s) && start < size)
+	while (start < end)
 		sub[i++] = s[start++];
 	sub[i] = 0;
 	return (sub);
@@ -85,7 +91,7 @@ char	*gnl_substr(char *s, unsigned int start)
 
 char	*free_backup(char **backup)
 {
-	free(backup);
-	backup = NULL;
+	free(*backup);
+	*backup = NULL;
 	return (NULL);
 }
