@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 14:33:46 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/20 16:31:18 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:57:06 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_head(char **backup)
 	else
 	{
 		res = gnl_substr(*backup, 0, end);
-		*backup = gnl_substr(*backup, end + 1, gnl_strlen(*backup));
+		*backup = gnl_substr(*backup, end + 1, gnl_strlen(*backup) - 1);
 	}
 	return (res);
 }
@@ -51,12 +51,12 @@ char	*get_next_line(int fd)
 {
 	static char	*backup;
 	char		buf[BUFFER_SIZE + 1];
-	char		*res;
 	ssize_t		len;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	while (1)
+	len = 1;
+	while (len)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		if (len < 0)
@@ -66,9 +66,9 @@ char	*get_next_line(int fd)
 		buf[len] = 0;
 		backup = gnl_strcat(backup, buf);
 		if (has_newline(backup) != -1)
-			res = get_head(&backup);
+		{
+			return (get_head(&backup));
+		}
 	}
-	if (!len)
-		return (get_head(&backup));
-	return (res);
+	return (get_head(&backup));
 }
