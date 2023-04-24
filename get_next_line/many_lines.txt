@@ -1,0 +1,6 @@
+Hello, World!
+This is Sion Shin.
+I'm gonna test my GNL: Get Next Line.
+
+Is it really working well?
+Well.. We'll see..

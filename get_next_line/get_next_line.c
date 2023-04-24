@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 14:33:46 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/20 20:57:06 by sishin           ###   ########.fr       */
+/*   Created: 2023/04/24 14:42:03 by sishin            #+#    #+#             */
+/*   Updated: 2023/04/24 20:31:29 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// 개행이 있는지 판별
-int	has_newline(const char *str)
+int	has_newline(char *str)
 {
 	int	i;
 
@@ -27,48 +26,85 @@ int	has_newline(const char *str)
 	return (-1);
 }
 
-// 개행까지 문자열을 떼어 res에 넣고, 나머지는 앞으로 당겨옴.
-char	*get_head(char **backup)
+char	*free_backup(char **backup)
 {
-	char			*res;
-	int				end;
+	free(*backup);
+	*backup = NULL;
+	return (NULL);
+}
 
-	end = has_newline(*backup);
-	if (end == -1)
+// backup에 개행이 있으면 있는데까지
+// 없으면 backup 전부 res에 담고 리턴
+
+char	*gnl_strdup(char	*str)
+{
+	char			*dup;
+	unsigned int	len;
+	unsigned int	i;
+
+	i = 0;
+	len = gnl_strlen(str);
+	dup = malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	while (i < len)
 	{
-		res = gnl_strndup(*backup, gnl_strlen(*backup));
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = 0;
+	return (dup);
+}
+
+char	*gnl_return(char	**backup, int idx)
+{
+	char	*res;
+
+	if (!(*backup))
+		return (NULL);
+	if (idx == -1)
+	{
+		res = gnl_strdup(*backup);
 		free_backup(backup);
 	}
 	else
 	{
-		res = gnl_substr(*backup, 0, end);
-		*backup = gnl_substr(*backup, end + 1, gnl_strlen(*backup) - 1);
+		res = gnl_strndup(*backup, idx);
+		*backup = gnl_substr(*backup, idx);
+		if (!(*backup))
+			return (NULL);
 	}
 	return (res);
 }
 
 char	*get_next_line(int fd)
 {
+	ssize_t		byte;
 	static char	*backup;
 	char		buf[BUFFER_SIZE + 1];
-	ssize_t		len;
+	int			idx;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	len = 1;
-	while (len)
+	byte = 1;
+	while (byte)
 	{
-		len = read(fd, buf, BUFFER_SIZE);
-		if (len < 0)
+		printf("Hi\n");
+		byte = read(fd, buf, BUFFER_SIZE);
+		if (byte < 0)
 			return (free_backup(&backup));
-		if (!len)
+		if (!byte)
 			break ;
-		buf[len] = 0;
-		backup = gnl_strcat(backup, buf);
-		if (has_newline(backup) != -1)
-		{
-			return (get_head(&backup));
-		}
+		buf[byte] = 0;
+		if (!backup)
+			backup = gnl_strdup(buf);
+		else
+			backup = gnl_strjoin(backup, buf);
+		printf("backup: %s\n\n", backup);
+		idx = has_newline(backup);
+		printf("idx: %d\n\n", idx);
+		if (idx != -1)
+			return (gnl_return(&backup, idx));
 	}
-	return (get_head(&backup));
+	return (gnl_return(&backup, idx));
 }
