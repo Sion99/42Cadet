@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:45:21 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/24 20:32:30 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/25 14:09:25 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*gnl_strndup(char *str, int n)
 		i++;
 	}
 	dup[i] = 0;
-	printf("dup : %s", dup);
 	return (dup);
 }
 
@@ -49,7 +48,10 @@ char	*gnl_strjoin(char *backup, char *buf)
 
 	joined = malloc(sizeof(char) * (gnl_strlen(backup) + gnl_strlen(buf) + 1));
 	if (!joined)
+	{
+		free(backup);
 		return (NULL);
+	}
 	i = 0;
 	j = 0;
 	while (backup[i])
@@ -76,11 +78,13 @@ char	*gnl_substr(char *s, unsigned int start)
 	i = 0;
 	sub = malloc(sizeof(char) * (end - start + 1));
 	if (!sub)
+	{
+		free(s);
 		return (NULL);
-	while (start < end)
-		sub[i++] = s[start++];
+	}
+	while (++start < end)
+		sub[i++] = s[start];
 	free(s);
 	sub[i] = 0;
-	printf("sub : %s\n", sub);
 	return (sub);
 }

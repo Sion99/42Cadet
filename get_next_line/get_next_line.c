@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:42:03 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/24 20:31:29 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/25 13:58:30 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	has_newline(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (-2);
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -32,9 +34,6 @@ char	*free_backup(char **backup)
 	*backup = NULL;
 	return (NULL);
 }
-
-// backup에 개행이 있으면 있는데까지
-// 없으면 backup 전부 res에 담고 리턴
 
 char	*gnl_strdup(char	*str)
 {
@@ -60,8 +59,10 @@ char	*gnl_return(char	**backup, int idx)
 {
 	char	*res;
 
-	if (!(*backup))
+	if (!(*backup) || idx == -2)
 		return (NULL);
+	if (!**backup)
+		return (free_backup(backup));
 	if (idx == -1)
 	{
 		res = gnl_strdup(*backup);
@@ -70,9 +71,14 @@ char	*gnl_return(char	**backup, int idx)
 	else
 	{
 		res = gnl_strndup(*backup, idx);
+		if (!res)
+			return (free_backup(backup));
 		*backup = gnl_substr(*backup, idx);
 		if (!(*backup))
+		{
+			free(res);
 			return (NULL);
+		}
 	}
 	return (res);
 }
@@ -82,14 +88,11 @@ char	*get_next_line(int fd)
 	ssize_t		byte;
 	static char	*backup;
 	char		buf[BUFFER_SIZE + 1];
-	int			idx;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	byte = 1;
-	while (byte)
+	while (1)
 	{
-		printf("Hi\n");
 		byte = read(fd, buf, BUFFER_SIZE);
 		if (byte < 0)
 			return (free_backup(&backup));
@@ -100,11 +103,10 @@ char	*get_next_line(int fd)
 			backup = gnl_strdup(buf);
 		else
 			backup = gnl_strjoin(backup, buf);
-		printf("backup: %s\n\n", backup);
-		idx = has_newline(backup);
-		printf("idx: %d\n\n", idx);
-		if (idx != -1)
-			return (gnl_return(&backup, idx));
+		if (!backup)
+			return (NULL);
+		if (has_newline(backup) != -1)
+			return (gnl_return(&backup, has_newline(backup)));
 	}
-	return (gnl_return(&backup, idx));
+	return (gnl_return(&backup, has_newline(backup)));
 }
