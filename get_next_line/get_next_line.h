@@ -6,7 +6,7 @@
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:43:52 by sishin            #+#    #+#             */
-/*   Updated: 2023/04/24 20:30:54 by sishin           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:19:51 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 char			*get_next_line(int fd);
 char			*gnl_return(char **backup, int idx);
