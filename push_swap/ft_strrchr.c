@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/16 13:23:05 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/27 22:27:07 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
-
-int	main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (argc != 2)
-		return (0);
-	
+	int		i;
+	char	*temp;
+
+	i = 0;
+	temp = (char *)s;
+	while (s[i])
+		i++;
+	if ((char)c == '\0')
+		return (temp + i);
+	i--;
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return (temp + i);
+		i--;
+	}
+	return (0);
 }

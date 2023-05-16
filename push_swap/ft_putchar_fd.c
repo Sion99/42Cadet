@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/29 21:25:58 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/29 21:26:35 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (argc != 2)
-		return (0);
-	
+	write(fd, &c, 1);
 }

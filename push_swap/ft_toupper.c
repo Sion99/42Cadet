@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/16 13:19:08 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/20 17:10:47 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_toupper(int c)
 {
-	if (argc != 2)
-		return (0);
-	
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

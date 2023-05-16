@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/16 14:18:25 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/27 14:15:58 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (argc != 2)
-		return (0);
-	
+	void	*arr;
+
+	arr = malloc(size * count);
+	if (!arr)
+		return (NULL);
+	ft_memset(arr, 0, count * size);
+	return (arr);
 }

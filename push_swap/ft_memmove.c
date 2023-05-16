@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/14 13:33:34 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/29 22:37:01 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (argc != 2)
+	unsigned char		*temp;
+	const char			*s;
+
+	if (dst == 0 && src == 0)
 		return (0);
-	
+	if (dst <= src)
+	{
+		temp = dst;
+		s = src;
+		while (len--)
+			*temp++ = *s++;
+	}
+	else
+	{
+		temp = dst;
+		temp += len;
+		s = src;
+		s += len;
+		while (len--)
+			*--temp = *--s;
+	}
+	return (dst);
 }

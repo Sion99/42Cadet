@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sishin <sishin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sishin <sishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 19:20:09 by sishin            #+#    #+#             */
-/*   Updated: 2023/05/16 19:21:53 by sishin           ###   ########.fr       */
+/*   Created: 2023/03/27 12:15:38 by sishin            #+#    #+#             */
+/*   Updated: 2023/03/29 20:27:10 by sishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s1)
 {
-	if (argc != 2)
-		return (0);
-	
+	char	*cpy;
+	size_t	i;
+
+	cpy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!cpy)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		cpy[i] = s1[i];
+		i++;
+	}
+	cpy[i] = 0;
+	return (cpy);
 }
